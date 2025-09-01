@@ -45,11 +45,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-//========== Add Code at this area begin =============
+//========== 实验代码书写区开始 =============
 
 
 
-//========== Add Code at this area end =============
+//========== 实验代码书写区结束 =============
 
 // Control whether the LED flashes
 uint8_t work_flag = 1;
@@ -111,11 +111,11 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  //========= Add Code at this area begin =========
+  //========= 实验代码书写区开始 =========
 
 
 
-  //========= Add Code at this area end =========
+  //========= 实验代码书写区结束 =========
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -157,29 +157,28 @@ void Usart_data_parse(uint8_t *data, uint16_t len)
     work_flag = 1;
     return ;
   }
-  //========= Add Code at this area begin =========
+  //========= 实验代码书写区开始 =========
 
 
 
-  //========= Add Code at this area end =========
+  //========= 实验代码书写区结束 =========
 }
 
 void UartReadTask(void *argument)
 {
   LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_9);
   while (1) {
-	//========= Add Code at this area begin =========
+	//========= 实验代码书写区开始 =========
     if(LL_USART_IsActiveFlag_XXXX(USART1)) {
-	//========= Add Code at this area end =========
+	//========= 实验代码书写区结束 =========
       uint8_t receivedChar = LL_USART_ReceiveData8(USART1);
       usart1_rx_buffer.buffer[usart1_rx_buffer.index++] = receivedChar;
-      // Add code here
-
+      // 请在此处开始实现指令回显的功能(Instruction feedback)
 
     }
-    //========= Add Code at this area begin =========
+    //========= 实验代码书写区开始 =========
     if(LL_USART_IsActiveFlag_XXXX(USART1)) {
-	//========= Add Code at this area end =========
+	//========= 实验代码书写区结束 =========
       LL_USART_ClearFlag_IDLE(USART1);
       usart1_rx_buffer.buffer[usart1_rx_buffer.index++] = '\0'; // Null-terminate the string
       Usart_data_parse(usart1_rx_buffer.buffer, usart1_rx_buffer.index);
